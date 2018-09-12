@@ -9,12 +9,13 @@ import ProtectedRoute from './ProtectedRoute';
 import AuthRoute from './AuthRoute';
 import FetchUser from './FetchUser';
 import { Switch, Route } from 'react-router-dom';
+import RegularNavBar from "./RegularNavBar";
 
 class App extends Component {
   render() {
     return (
       <div>
-        <NavBar />
+        <RegularNavBar />
         <Flash />
         <FetchUser>
           <Switch>
