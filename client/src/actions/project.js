@@ -6,7 +6,7 @@ const setProjects = (projects) => {
   return { type: 'GET_PROJECTS', projects }
 }
 
-export const getServices = () => {
+export const getProjects = () => {
   return dispatch => {
     axios.get('/api/projects')
       .then(res => {
