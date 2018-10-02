@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Container, Header, Divider, Card, Grid, Image } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { getProjects} from '../actions/project';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { Carousel } from 'react-responsive-carousel';
 import ProjectModal from './ProjectModal'
 
 class Home extends Component {
@@ -10,28 +12,18 @@ class Home extends Component {
     this.props.dispatch(getProjects())
   }
 
-  displayProjects = () => {
-    const {projects} = this.props
-    return projects.map( project => {
+  handleShow = (project) => {
+    console.log(project)
+  }
+
+  displayImages = () => {
+    const {projects} = this.props 
+    return projects.map( p => {
       return(
-        <Grid.Column
-          key={project.id}
-          computer={4}
-          tablet={12}
-          phone={12}
-        >
-          <Card style={styles.card}>
-            <Image
-              src={project.public}
-            />
-              <Card.Content>
-                <Card.Header>{project.title}</Card.Header>
-                <Card.Description>{project.description}</Card.Description>
-                <Divider />
-                <ProjectModal project={project} />
-              </Card.Content>
-            </Card>
-        </Grid.Column>
+        <div key={p.id} onClick={() => this.handleShow(p)}>
+          <img src={p.public} />
+          <p className="legend">{p.title}</p>
+        </div>
       )
     })
   }
@@ -46,11 +38,11 @@ class Home extends Component {
           <p>This is where i am going to put all the content for the current website.</p>
         </Container>
         <Divider />
-        <Grid style={styles.projects} columns={12}>
-          <Grid.Row centered>
-            {this.displayProjects()}
-          </Grid.Row>
-        </Grid>
+        <div style={styles.images}>
+          <Carousel>
+            {this.displayImages()}
+          </Carousel>
+        </div>
       </div>
     );
   }
@@ -75,6 +67,10 @@ const styles = {
   }, 
   card: {
     margin: '30px'
+  },
+  images: {
+    margin: '45px',
+    border: 'black solid 1px',
   }
 }
 

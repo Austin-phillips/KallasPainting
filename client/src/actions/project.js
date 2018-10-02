@@ -17,3 +17,17 @@ export const getProjects = () => {
       })
   }
 }
+
+export const getProjectShow = (id) => {
+  return (dispatch) => {
+    axios.get(`/api/projects/${id}`)
+      .then(res => {
+        const { data: projects, headers } = res;
+        dispatch({ type: 'GET_SINGLE', projects, headers });
+      })
+      .catch(res => {
+        setFlash('Error Loading Single Project', 'red');
+        dispatch(setHeaders(res.headers));
+      })
+  }
+}
