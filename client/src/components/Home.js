@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 import { Container, Header, Divider, Card, Grid, Image } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { getProjects} from '../actions/project';
+import ProjectModal from './ProjectModal'
 
 class Home extends Component {
 
   componentDidMount() {
     this.props.dispatch(getProjects())
-  }
-
-  handleClick = (project) => {
-    console.log(project)
   }
 
   displayProjects = () => {
@@ -19,17 +16,19 @@ class Home extends Component {
       return(
         <Grid.Column
           key={project.id}
-          computer={3}
+          computer={4}
           tablet={12}
           phone={12}
         >
-          <Card onClick={this.handleClick(project)}>
+          <Card style={styles.card}>
             <Image
-              src='https://res.cloudinary.com/kallasbeauty/image/upload/v1538023948/a3qnhdc1jyf7ylrbkmvu.jpg'
+              src={project.public}
             />
               <Card.Content>
                 <Card.Header>{project.title}</Card.Header>
                 <Card.Description>{project.description}</Card.Description>
+                <Divider />
+                <ProjectModal project={project} />
               </Card.Content>
             </Card>
         </Grid.Column>
@@ -47,7 +46,7 @@ class Home extends Component {
           <p>This is where i am going to put all the content for the current website.</p>
         </Container>
         <Divider />
-        <Grid columns={12}>
+        <Grid style={styles.projects} columns={12}>
           <Grid.Row centered>
             {this.displayProjects()}
           </Grid.Row>
@@ -70,6 +69,12 @@ const styles = {
     height: '300px',
     paddingTop: '35px',
     paddingBottom: '15px'
+  },
+  projects: {
+    margin: '25px'
+  }, 
+  card: {
+    margin: '30px'
   }
 }
 
