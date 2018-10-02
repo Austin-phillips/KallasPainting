@@ -15,7 +15,9 @@ class App extends Component {
   render() {
     return (
       <div>
-        <RegularNavBar />
+        <div style={styles.menu}>
+          <RegularNavBar/>
+        </div>
         <Flash />
         <FetchUser>
           <Switch>
@@ -27,6 +29,12 @@ class App extends Component {
         </FetchUser>
       </div>
     );
+  }
+}
+
+const styles = {
+  menu: {
+    backgroundColor: '#808080',
   }
 }
 
