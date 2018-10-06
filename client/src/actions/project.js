@@ -2,15 +2,15 @@ import axios from 'axios';
 import { setFlash } from './flash';
 import { setHeaders } from './headers';
 
-const setProjects = (projects) => {
-  return { type: 'GET_PROJECTS', projects }
+const setHomeProjects = (projects) => {
+  return { type: 'GET_HOMEPROJECTS', projects }
 }
 
-export const getProjects = () => {
+export const getHomeProjects = () => {
   return dispatch => {
-    axios.get('/api/projects')
+    axios.get('/api/home_projects')
       .then(res => {
-        dispatch(setProjects(res.data))
+        dispatch(setHomeProjects(res.data))
       })
       .catch(err => {
         dispatch(setFlash('Error loading projects, please try again.', 'red'))

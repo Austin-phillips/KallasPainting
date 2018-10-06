@@ -1,6 +1,6 @@
 const projects = (state = [], action) => {
   switch (action.type) {
-    case 'GET_PROJECTS':
+    case 'GET_HOMEPROJECTS':
       return action.projects
     case 'GET_SINGLE':
       return action.projects

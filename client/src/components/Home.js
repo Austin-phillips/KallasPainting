@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Container, Header, Divider, Card, Grid, Image, Button } from 'semantic-ui-react';
+import { Container, Header, Divider, Card, Grid, Image, Button, Form  } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { getProjects} from '../actions/project';
+import { getHomeProjects} from '../actions/project';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Link, withRouter } from 'react-router-dom';
 import ProjectModal from './ProjectModal'
@@ -9,7 +9,7 @@ import ProjectModal from './ProjectModal'
 class Home extends Component {
 
   componentDidMount() {
-    this.props.dispatch(getProjects())
+    this.props.dispatch(getHomeProjects())
   }
 
   handleShow = (project) => {
@@ -61,6 +61,25 @@ class Home extends Component {
             <Button style={{marginBottom: '150px', width: '300px'}} color='green'> View More Projects</Button>
           </Link>
         </Container>
+        <Container style={styles.contact}>
+          <Header as='h1' textAlign='center'>Contact Us</Header>
+          <Form>
+            <Form.Field>
+              <label>First Name</label>
+              <input placeholder='First Name' />
+            </Form.Field>
+            <Form.Field>
+              <label>Last Name</label>
+              <input placeholder='Last Name' />
+            </Form.Field>
+            <Form.Field>
+              <label>Email</label>
+              <input placeholder=' Email' />
+            </Form.Field>
+            <Form.TextArea label='Message' placeholder='Message' />
+            <Button color='blue' type='submit'>Submit</Button>
+          </Form>
+        </Container>
       </div>
     );
   }
@@ -85,6 +104,19 @@ const styles = {
   projects: {
     marginBottom: '150px'
   },
+  contact: {
+    backgroundColor: 'white',
+    paddingLeft: '300px',
+    paddingRight: '300px',
+    paddingTop: '50px',
+    paddingBottom: '50px',
+    borderRadius:'50px',
+    marginBottom: '100px'
+  },
+  form: {
+    width: '300px',
+    textAlign: 'center'
+  }
 }
 
 const mapStateToProps = (state) => {
