@@ -1,6 +1,7 @@
 class Api::EmailsController < ApplicationController
 
-  def create
+  def send_email
+    binding.pry
     @email = Emails.create(email_params)
     if @emails.save 
       NewEmailsEmailMailer.new_emails_email(@email).deliver

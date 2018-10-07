@@ -4,9 +4,9 @@ Rails.application.routes.draw do
     resources :projects do 
       resources :images
     end 
-    resources :emails
   end
   get 'api/home_projects', to: 'api/projects#home_projects'
+  post 'api/send_email', to: 'api/emails#send_emails'
 
   #Do not place any routes below this one
   get '*other', to: 'static#index'

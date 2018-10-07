@@ -4,7 +4,7 @@ class Projects extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{color: 'white'}}>
         Project Show baby
       </div>
     )

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Container, Header, Divider, Card, Grid, Image, Button, Form  } from 'semantic-ui-react';
+import { Container, Header, Divider, Card, Grid, Image, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { getHomeProjects} from '../actions/project';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Link, withRouter } from 'react-router-dom';
 import ProjectModal from './ProjectModal'
+import ContactUsForm from './ContactUsForm';
 
 class Home extends Component {
 
@@ -62,23 +63,7 @@ class Home extends Component {
           </Link>
         </Container>
         <Container style={styles.contact}>
-          <Header as='h1' textAlign='center'>Contact Us</Header>
-          <Form>
-            <Form.Field>
-              <label>First Name</label>
-              <input placeholder='First Name' />
-            </Form.Field>
-            <Form.Field>
-              <label>Last Name</label>
-              <input placeholder='Last Name' />
-            </Form.Field>
-            <Form.Field>
-              <label>Email</label>
-              <input placeholder=' Email' />
-            </Form.Field>
-            <Form.TextArea label='Message' placeholder='Message' />
-            <Button color='blue' type='submit'>Submit</Button>
-          </Form>
+          <ContactUsForm />
         </Container>
       </div>
     );
