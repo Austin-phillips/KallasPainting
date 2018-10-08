@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Header, Button, Form } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import {sendEmail} from '../actions/email';
+import axios from 'axios';
+import { setFlash } from '../actions/flash';
 
 
 class ContactUsForm extends Component {
@@ -15,11 +17,14 @@ class ContactUsForm extends Component {
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
   handleSubmit = (e) => {
+    const { first, last, email, message } = this.state; 
     e.preventDefault();
-    const { dispatch } = this.props;
-    const { first, last, email, message } = this.state;
-    dispatch(sendEmail({ first, last, email, message }));
-    this.setState({ first: '', last: '', email: '', message: ''})
+    axios.post(`/api/send_email`, { first, last, email, message })
+    console.log('How to clear state')
+  }
+
+  clearState = () => {
+    console.log('Clear')
   }
 
 
@@ -65,6 +70,7 @@ class ContactUsForm extends Component {
           </Form.Group>
           <Button color='blue' type='submit'>Submit</Button>
         </Form>
+          <Button color='blue' onClick={() => this.clearState()}>Clear</Button>
       </div>
     )
   }

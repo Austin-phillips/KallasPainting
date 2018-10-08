@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     end 
   end
   get 'api/home_projects', to: 'api/projects#home_projects'
-  post 'api/send_email', to: 'api/emails#send_emails'
+  post 'api/send_email', to: 'api/emails#send_email'
 
   #Do not place any routes below this one
   get '*other', to: 'static#index'

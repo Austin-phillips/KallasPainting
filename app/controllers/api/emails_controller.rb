@@ -1,13 +1,13 @@
 class Api::EmailsController < ApplicationController
 
   def send_email
-    binding.pry
-    @email = Emails.create(email_params)
-    if @emails.save 
-      NewEmailsEmailMailer.new_emails_email(@email).deliver
-      render json: @email 
-    else
-      render json: @email.errors, status: :unprocessable_entity
+    @email = { 
+      first: params[:first],
+      last: params[:last],
+      email: params[:email],
+      message: params[:message]
+    }
+    ContactUsMailer.contact_us_mailer(@email).deliver
   end
 
   private

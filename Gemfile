@@ -10,7 +10,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'omniauth'
 gem 'devise'
 gem 'devise_token_auth'
+gem 'figaro'
+
 group :development, :test do
+  gem 'pry'
   gem 'faker'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
